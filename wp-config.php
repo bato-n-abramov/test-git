@@ -20,13 +20,13 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wp_testgit_db' );
+define( 'DB_NAME', 'batowebd_test-git' );
 
 /** Database username */
-define( 'DB_USER', 'wp_testgit_user' );
+define( 'DB_USER', 'batowebd_test-git' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'wp_testgit_pw' );
+define( 'DB_PASSWORD', '3Ba&&HT^Xr^$' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost:8889' );
