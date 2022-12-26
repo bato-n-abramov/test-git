@@ -61,7 +61,7 @@ jobs:
     #     key: ${{ secrets.KEY }}
     #     overwrite: true
     #     source: ".,!vendor,!.env.example,!.git*,!./*.json,!*.lock,!*.md,!node_modules"
-    #     target: "test-git.bato-webdesign.net"
+    #     target: "test-git.bato-webdesign.net" 
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@main
       env:
