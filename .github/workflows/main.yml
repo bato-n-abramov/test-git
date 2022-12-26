@@ -49,13 +49,22 @@ jobs:
     #     rsync-options: --ignore-existing --archive -u
 
     - name: Copying files to server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        port : ${{ secrets.PROT }}
-        key: ${{ secrets.KEY }}
-        overwrite: true
-        rm: true
-        source: ".,!vendor,!.env.example,!.git*,!./*.json,!*.lock,!*.md,!node_modules"
-        target: "test-git.bato-webdesign.net"
+      # uses: appleboy/scp-action@master
+      # with:
+      #   host: ${{ secrets.HOST }}
+      #   username: ${{ secrets.USER }}
+      #   port : ${{ secrets.PROT }}
+      #   key: ${{ secrets.KEY }}
+      #   overwrite: true
+      #   source: ".,!vendor,!.env.example,!.git*,!./*.json,!*.lock,!*.md,!node_modules"
+      #   target: "test-git.bato-webdesign.net"
+    uses: easingthemes/ssh-deploy@main
+    env:
+        SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+        ARGS: "-rltgoDzvO"
+        SOURCE: "/"
+        REMOTE_HOST: ${{ secrets.HOST }}
+        REMOTE_USER: ${{ secrets.USER }}
+        REMOTE_PORT: ${{ secrets.PROT }}
+        TARGET: test-git.bato-webdesign.net
+        EXCLUDE: /vendor
