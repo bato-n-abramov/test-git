@@ -56,5 +56,6 @@ jobs:
         port : ${{ secrets.PROT }}
         key: ${{ secrets.KEY }}
         overwrite: true
+        rm: true
         source: ".,!vendor,!.env.example,!.git*,!./*.json,!*.lock,!*.md,!node_modules"
         target: "test-git.bato-webdesign.net"
