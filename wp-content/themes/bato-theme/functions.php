@@ -1,11 +1,4 @@
 <?php
-/**
- * test functions and definitions
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package test
- */
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
@@ -16,6 +9,17 @@ if ( ! defined( '_S_VERSION' ) ) {
 define( '_TP_', get_stylesheet_directory_uri() ); //theme path
 define( '_IMAGES_', _TP_.'/images' ); //images path
 /* defines END */
+
+
+add_action( 'wp_enqueue_scripts', 'load_js_css');
+function load_js_css() {
+    wp_enqueue_style('swiper', _TP_ . '/css/swiper-bundle.min.css');
+    wp_enqueue_style('styles',  _TP_ . '/css/styles.css');
+    wp_enqueue_style('media-styles', _TP_ . '/css/media.css');
+
+    wp_enqueue_script('swiper', _TP_ . '/js/swiper-bundle.min.js',array('jquery'),null,false);
+    wp_enqueue_script('script', _TP_ . '/js/script.js',array('jquery'),null,false);
+}
 
 
 
@@ -34,6 +38,16 @@ function smartwp_remove_wp_block_library_css(){
 add_action( 'wp_enqueue_scripts', 'smartwp_remove_wp_block_library_css' );
 /* REMOVE GUTENBERG STYLES END */
 
+
+/* REMOVE ATTRS START */
+add_action('wp_loaded', 'prefix_output_buffer_start');
+function prefix_output_buffer_start() {
+    ob_start("prefix_output_callback");
+}
+function prefix_output_callback($buffer) {
+    return preg_replace( "%[ ]type=[\'\"]text\/(javascript|css)[\'\"]%", '', $buffer );
+}
+/* REMOVE ATTRS END */
 
 
 /* ACF theme options START */
@@ -170,6 +184,16 @@ function my_acf_json_load_point( $paths ) {
     
 }
 
+
+add_action('after_setup_theme', function(){
+    register_nav_menus( array(
+        'main_menu'   => 'Main menu',
+        'footer_menu'   => 'Footer menu',
+        'mobile_menu'   => 'Mobile menu',
+    ));
+});
+
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -260,77 +284,11 @@ function test_setup() {
 }
 add_action( 'after_setup_theme', 'test_setup' );
 
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function test_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'test_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'test_content_width', 0 );
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function test_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'test' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'test' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'test_widgets_init' );
+// Remove WP toolbar
+add_filter('show_admin_bar', '__return_false');
 
-/**
- * Enqueue scripts and styles.
- */
-function test_scripts() {
-	wp_enqueue_style( 'test-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'test-style', 'rtl', 'replace' );
 
-	wp_enqueue_script( 'test-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'test_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
+// Remove autoupdate plugin
+add_filter( 'auto_update_plugin', '__return_false' );
 
