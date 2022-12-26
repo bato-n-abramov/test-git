@@ -1,4 +1,4 @@
-	<footer id="colophon" class="site-footer">
+	<footer class="footer">
 
 	</footer>
 </div>
