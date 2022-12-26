@@ -39,4 +39,4 @@ jobs:
         remote-user: ${{ secrets.USER }}
         private-ssh-key: ${{ secrets.KEY }}
         destination-path: ~/test-git.bato-webdesign.net/
-        rsync-options: --dry-run --archive
+        rsync-options: --ignore-existing --archive -u
