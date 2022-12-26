@@ -8,7 +8,7 @@ $fields = get_fields();
 $title = $fields['title'];
 $image = $fields['image'];
  
-dd('222222');
+dd('3333');
 ?>
 
 <?php if(!empty($title)) : ?>
