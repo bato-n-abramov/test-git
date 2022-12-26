@@ -68,4 +68,3 @@ jobs:
           REMOTE_USER: ${{ secrets.USER }}
           REMOTE_PORT: ${{ secrets.PROT }}
           TARGET: test-git.bato-webdesign.net
-          EXCLUDE: /vendor
