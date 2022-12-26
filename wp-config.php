@@ -18,24 +18,42 @@
  * @package WordPress
  */
 
+ /** @desc this loads the composer autoload file */
+require_once __DIR__ . '/vendor/autoload.php';
+/** @desc this instantiates Dotenv and passes in our path to .env */
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'batowebd_test-git' );
+// define( 'DB_NAME', 'wp_testgit_db' );
 
-/** Database username */
-define( 'DB_USER', 'batowebd_test-git' );
+// /** Database username */
+// define( 'DB_USER', 'wp_testgit_user' );
 
-/** Database password */
-define( 'DB_PASSWORD', '3Ba&&HT^Xr^$' );
+// /** Database password */
+// define( 'DB_PASSWORD', 'wp_testgit_pw' );
 
-/** Database hostname */
-define( 'DB_HOST', 'localhost:8889' );
+// /** Database hostname */
+// define( 'DB_HOST', 'localhost:8889' );
 
-/** Database charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8mb4' );
+// /** Database charset to use in creating database tables. */
+// define( 'DB_CHARSET', 'utf8mb4' );
 
-/** The database collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
+// /** The database collate type. Don't change this if in doubt. */
+// define( 'DB_COLLATE', '' );
+
+
+defined('WORDPRESS_ENV') or define('WORDPRESS_ENV', $_ENV['WORDPRESS_ENV']);
+defined('WP_HOME') or define('WP_HOME', $_ENV['WP_HOME']);
+defined('DB_NAME') or define('DB_NAME', $_ENV['DB_NAME']);
+defined('DB_USER') or define('DB_USER', $_ENV['DB_USER']);
+defined('DB_PASSWORD') or define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+defined('WP_DEBUG') or define('WP_DEBUG', $_ENV['WP_DEBUG']);
+defined('WP_DEBUG_LOG') or define('WP_DEBUG_LOG', $_ENV['WP_DEBUG_LOG']);
+defined('WP_DEBUG_DISPLAY') or define('WP_DEBUG_DISPLAY', $_ENV['WP_DEBUG_DISPLAY']);
+
 
 /**#@+
  * Authentication unique keys and salts.
@@ -79,7 +97,7 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+// define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 

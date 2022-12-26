@@ -1,2 +1,5 @@
-!wp-config.php
-!.htaccess
+wp-config.php
+.htaccess
+.env
+vendor/
+.DS_Store
