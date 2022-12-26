@@ -24,6 +24,11 @@
 
 on: push
 name: Publish Website
+on: 
+  push:
+    branches:
+      - main
+      
 jobs:
   web-deploy:
     name: 🚀 Deploy Website Every Commit
