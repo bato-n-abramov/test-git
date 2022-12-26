@@ -30,7 +30,7 @@ on:
 
 jobs:
   web-deploy:
-    name: 🚀 Deploy Website Every Commit
+    name: 🚀 Deploy Website
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2  
