@@ -18,5 +18,5 @@ jobs:
         ftp-username: ${{ secrets.FTP_USERNAME }}
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         exclude: | 
-        **/wp-admin/*
-        **/wp-includes/*
+          **/wp-admin/*
+          **/wp-includes/*
