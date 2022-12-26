@@ -38,5 +38,5 @@ jobs:
         ssh-port: ${{ secrets.PROT }}
         remote-user: ${{ secrets.USER }}
         private-ssh-key: ${{ secrets.KEY }}
-        destination-path: ~/test-git.bato-webdesign.net/
+        destination-path: /test-git.bato-webdesign.net/
         rsync-options: --ignore-existing --archive -u
