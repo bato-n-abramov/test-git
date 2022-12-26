@@ -55,5 +55,6 @@ jobs:
         username: ${{ secrets.USER }}
         port : ${{ secrets.PROT }}
         key: ${{ secrets.KEY }}
+        overwrite: --overwrite
         source: ".,!veendor,!.env.example,!.git*,!./*.json,!*.lock,!*.md,!node_modules"
         target: "test-git.bato-webdesign.net"
